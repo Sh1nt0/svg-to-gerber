@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8">
+    <title>SVG to gerber converter</title>
+    <script src="lib/snap.svg-min.js"></script>
+</head>
+<body>
+    <section>
+        <svg id="pcb" height="100%" width="100%" style="border: 1px solid" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+            <defs>
+                <pattern id="grid_pattern" patternUnits="userSpaceOnUse" x="0" y="0" width="10mm" height="10mm" fill="none" stroke="gray" strokeWidth="1px">
+                    <path d="M 100 0 L 0 0 0 100" />
+                </pattern>
+            </defs>
+
+            <rect class="bg" fill="url(#grid_pattern)" x="-150" y="-150" width="300" height="300" />
+            <rect id="pad" fill="black" x="0" y="0" width="20.1234567" height="20.1234567"/>
+        </svg>
+    </section>
+    <script src="svg-to-gerber.js"></script>
+</body>
+</html>
