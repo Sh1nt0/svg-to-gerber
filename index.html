@@ -4,10 +4,11 @@
     <meta content="text/html; charset=UTF-8">
     <title>SVG to gerber converter</title>
     <script src="lib/snap.svg-min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <section>
-        <svg id="pcb" height="100%" width="100%" style="border: 1px solid" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <svg id="pcb" version="1.1" xmlns="http://www.w3.org/2000/svg">
 
             <defs>
                 <pattern id="grid_pattern" patternUnits="userSpaceOnUse" x="0" y="0" width="10mm" height="10mm" fill="none" stroke="gray" strokeWidth="1px">
@@ -15,8 +16,10 @@
                 </pattern>
             </defs>
 
-            <rect class="bg" fill="url(#grid_pattern)" x="-150" y="-150" width="300" height="300" />
-            <rect id="pad" fill="black" x="0" y="0" width="20.1234567" height="20.1234567"/>
+            <rect class="bg" fill="url(#grid_pattern)" x="0" y="0" width="100%" height="100%" />
+            <rect id="pad" fill="none" x="0" y="0" width="20.1234567" height="20.1234567"/>
+            <path fill="none" style="stroke:#f44; stroke-width:45px; stroke-linejoin: round; stroke-linecap: round" d="M 100 50 L 100 100 L 400 400" />
+            <polyline id="track" fill="none" style="stroke:#444; stroke-width:40px; stroke-linejoin: round; stroke-linecap: round" points="100 50 100 100 400 400" />
         </svg>
     </section>
     <script src="svg-to-gerber.js"></script>

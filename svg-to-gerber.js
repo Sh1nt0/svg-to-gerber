@@ -22,6 +22,25 @@ function convert_coordinate_format(coord) {
 var pcb = Snap("#pcb");
 var pad = pcb.select("#pad");
 
+var points;
+pcb.select("#track").drag(
+function(dx, dy, x, y, e) {
+    console.log(dx);
+    console.log(dy);
+    points[0] = +points[0] + dx;
+    points[1] = +points[1] + 0;
+    points[2] = +points[2] + dx;
+    points[3] = +points[3] + dx
+    this.attr({"points": points});
+    points[0] = +points[0] - dx;
+    points[1] = +points[1] - 0;
+    points[2] = +points[2] - dx;
+    points[3] = +points[3] - dx;
+},
+function(x, y, e) {
+    points = this.attr("points");
+});
+
 /* Based on: http://www.ucamco.com/files/downloads/file/81/the_gerber_file_format_specification.pdf */
 
 var gerber_code = "";
