@@ -22,24 +22,25 @@ function convert_coordinate_format(coord) {
 var pcb = Snap("#pcb");
 var pad = pcb.select("#pad");
 
-var points;
-pcb.select("#track").drag(
-function(dx, dy, x, y, e) {
-    console.log(dx);
-    console.log(dy);
-    points[0] = +points[0] + dx;
-    points[1] = +points[1] + 0;
-    points[2] = +points[2] + dx;
-    points[3] = +points[3] + dx
-    this.attr({"points": points});
-    points[0] = +points[0] - dx;
-    points[1] = +points[1] - 0;
-    points[2] = +points[2] - dx;
-    points[3] = +points[3] - dx;
-},
-function(x, y, e) {
-    points = this.attr("points");
+var x1, y1, x2, y2;
+var tracks = pcb.selectAll(".track");
+tracks.forEach( function(elem, i) {
+    elem.drag(move, start);
 });
+
+function move(dx, dy, x, y, e) {
+    this.attr({"x1": +x1 + dx });
+    this.attr({"y1": +y1 + 0  });
+    this.attr({"x2": +x2 + dx });
+    this.attr({"y2": +y2 + dx });
+};
+
+function start(x, y, e) {
+    x1 = this.attr("x1");
+    y1 = this.attr("y1");
+    x2 = this.attr("x2");
+    y2 = this.attr("y2");
+};
 
 /* Based on: http://www.ucamco.com/files/downloads/file/81/the_gerber_file_format_specification.pdf */
 
