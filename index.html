@@ -18,10 +18,11 @@
 
             <rect class="bg" fill="url(#grid_pattern)" x="0" y="0" width="100%" height="100%" />
             <rect id="pad" fill="none" x="0" y="0" width="20.1234567" height="20.1234567"/>
-            <path fill="none" style="stroke:#f44; stroke-width:45px; stroke-linejoin: round; stroke-linecap: round" d="M 100 50 L 100 100 L 400 400" />
+            <!--<path fill="none" style="stroke:#f44; stroke-width:45px; stroke-linejoin: round; stroke-linecap: round" d="M 100 50 L 100 100 L 400 400" />-->
             <!--<polyline id="track" fill="none" style="stroke:#444; stroke-width:40px; stroke-linejoin: round; stroke-linecap: round" points="100 50 100 100 400 400" />-->
-            <line class="track" fill="none" style="stroke:#4f4; stroke-width:40px; stroke-linejoin: round; stroke-linecap: round" x1="100"  y1="50" x2="100" y2="100" />
-            <line class="track" fill="none" style="stroke:#4f4; stroke-width:40px; stroke-linejoin: round; stroke-linecap: round" x1="100" y1="100" x2="400" y2="400" />
+            <line class="track"             fill="none" style="stroke:#4f4; stroke-width:40px; stroke-linejoin: round; stroke-linecap: round; stroke-opacity:0.9;" x1="100"  y1="50" x2="100" y2="100" />
+            <line class="track" id="middle" fill="none" style="stroke:#4f4; stroke-width:40px; stroke-linejoin: round; stroke-linecap: round; stroke-opacity:0.9;" x1="100" y1="100" x2="400" y2="400" />
+            <line class="track"             fill="none" style="stroke:#4f4; stroke-width:40px; stroke-linejoin: round; stroke-linecap: round; stroke-opacity:0.9;" x1="400" y1="400" x2="500" y2="400" />
         </svg>
     </section>
     <script src="svg-to-gerber.js"></script>

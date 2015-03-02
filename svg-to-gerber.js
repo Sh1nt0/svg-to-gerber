@@ -9,8 +9,8 @@ function convert_coordinate_format(coord) {
     /* Get the fraction part, truncate it to 6 decimals, and remove the decimal point */
     var fraction = (coord % 1).toFixed(6) * 1e6;
 
-    console.log(integer);
-    console.log(fraction);
+    //console.log(integer);
+    //console.log(fraction);
 
     return "" + integer + fraction
 }
@@ -24,15 +24,31 @@ var pad = pcb.select("#pad");
 
 var x1, y1, x2, y2;
 var tracks = pcb.selectAll(".track");
-tracks.forEach( function(elem, i) {
-    elem.drag(move, start);
-});
+
+var track = pcb.select("#middle");
+track.paper.append( track );
+track.drag(move, start);
+
+//tracks.forEach( function(elem, i) {
+//    elem.drag(move, start);
+//    //elem.hover(highlight_trace, unhighlight_trace);
+//});
 
 function move(dx, dy, x, y, e) {
-    this.attr({"x1": +x1 + dx });
-    this.attr({"y1": +y1 + 0  });
-    this.attr({"x2": +x2 + dx });
-    this.attr({"y2": +y2 + dx });
+    var new_y1 = +y1 + (dy - dx);
+    var new_x2 = +x2 - (dy - dx);
+
+    if ((+y2 - new_y1) < 0 && (new_x2 - +x1) < 0) {
+        new_y1 = y2;
+        new_x2 = x1;
+        this.remove();
+    }
+
+    this.attr({"y1": new_y1 });
+    this.attr({"x2": new_x2 });
+
+    connected_trace_one.attr({"y2": new_y1 });
+    connected_trace_two.attr({"x1": new_x2 });
 };
 
 function start(x, y, e) {
@@ -40,7 +56,33 @@ function start(x, y, e) {
     y1 = this.attr("y1");
     x2 = this.attr("x2");
     y2 = this.attr("y2");
+
+    parentThis = this;
+
+    tracks.forEach( function(elem, i) {
+        if (parentThis != elem) {
+            if (x1 == elem.attr("x1") || x1 == elem.attr("x2")) {
+                if (y1 == elem.attr("y1") || y1 == elem.attr("y2")) {
+                    connected_trace_one = elem;
+                }
+            }
+            if (x2 == elem.attr("x1") || x2 == elem.attr("x2")) {
+                if (y2 == elem.attr("y1") || y2 == elem.attr("y2")) {
+                    connected_trace_two = elem;
+                }
+            }
+        }
+    });
 };
+
+//function highlight_trace(e) {
+//    this.paper.append( this );
+//    this.attr({ stroke: "#222" });
+//};
+//
+//function unhighlight_trace(e) {
+//    this.attr({ stroke: "#4f4" });
+//};
 
 /* Based on: http://www.ucamco.com/files/downloads/file/81/the_gerber_file_format_specification.pdf */
 
