@@ -1,0 +1,21 @@
+<!doctype html>
+<head>
+<meta charset="utf-8">
+<title>PCB</title>
+</head>
+<body data-ng-app="pcb">
+<div data-ng-controller="pcb_controller">
+    <span>{{netname}}</span><br />
+    <span>{{traces}}</span>
+
+    <div data-pcb data="traces" label="netname" on-click="trace_on_click(trace)"></div><br />
+</div>
+
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controller.js"></script>
+<script src="js/directive.js"></script>
+<script src="js/d3.js"></script>
+
+</body>
+</html>
