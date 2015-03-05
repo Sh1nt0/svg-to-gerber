@@ -57,34 +57,34 @@
                         case 0.0:
                         case 2.0:
                         case 4.0:
-                            console.log("horizontal");
+                            // horizontal
                             d.y1 += d3.event.dy;
                             d.y2 += d3.event.dy;
                             break;
 
                         case 0.5:
                         case 2.5:
-                            console.log("falling");
+                            // falling
                             d.x2 += d3.event.dx - d3.event.dy;
                             d.y1 -= d3.event.dx - d3.event.dy;
                             break;
 
                         case 1.0:
                         case 3.0:
-                            console.log("vertical");
+                            // vertical
                             d.x1 += d3.event.dx;
                             d.x2 += d3.event.dx;
                             break;
 
                         case 1.5:
                         case 3.5:
-                            console.log("rising");
+                            // rising
                             d.x1 += d3.event.dx + d3.event.dy;
                             d.y2 += d3.event.dx + d3.event.dy;
                             break;
 
                         default:
-                            console.log("other angle");
+                            // other angle
                             d.x1 += d3.event.dx;
                             break;
                         }
