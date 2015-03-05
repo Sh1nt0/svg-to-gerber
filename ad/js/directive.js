@@ -65,8 +65,8 @@
                         case 0.5:
                         case 2.5:
                             console.log("falling");
-                            d.x2 += d3.event.dx;
-                            d.y1 -= d3.event.dx;
+                            d.x2 += d3.event.dx - d3.event.dy;
+                            d.y1 -= d3.event.dx - d3.event.dy;
                             break;
 
                         case 1.0:
@@ -79,8 +79,8 @@
                         case 1.5:
                         case 3.5:
                             console.log("rising");
-                            d.x1 += d3.event.dx;
-                            d.y2 += d3.event.dx;
+                            d.x1 += d3.event.dx + d3.event.dy;
+                            d.y2 += d3.event.dx + d3.event.dy;
                             break;
 
                         default:
